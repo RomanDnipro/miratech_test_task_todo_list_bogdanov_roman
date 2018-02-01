@@ -17,10 +17,12 @@ public class Task {
     }
 
     public Task(String title) {
+        this.id = new Date().getTime();
         this.title = title;
     }
 
     public Task() {
+        this.id = new Date().getTime();
     }
 
     public long getId() {
