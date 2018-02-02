@@ -7,7 +7,7 @@ public class Task {
 
     private long id;
     private String title;
-    private boolean done = false;
+    private boolean isDone = false;
     private LocalDate dueDate;
 
     public Task(String title, LocalDate dueDate) {
@@ -42,11 +42,11 @@ public class Task {
     }
 
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     public void setDone(boolean done) {
-        this.done = done;
+        this.isDone = done;
     }
 
     public LocalDate getDueDate() {

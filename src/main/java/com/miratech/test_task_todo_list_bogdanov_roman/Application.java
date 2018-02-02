@@ -15,8 +15,8 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
 
-        Task task1 = new Task("bring water");
-        Task task2 = new Task("finish the test task", LocalDate.of(2018, Month.FEBRUARY, 5));
+        Task task1 = new Task("test1 bring water");
+        Task task2 = new Task("test2 finish the test task", LocalDate.of(2018, Month.FEBRUARY, 5));
         toDoMap.put(task1.getId(), task1);
         toDoMap.put(task2.getId(), task2);
     }
