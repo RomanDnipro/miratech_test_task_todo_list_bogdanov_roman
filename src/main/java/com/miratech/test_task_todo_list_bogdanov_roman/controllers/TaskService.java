@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,12 +25,9 @@ public class TaskService {
         return taskRepository.findAll(sortByCreatedAtDesc);
     }
 
-    @RequestMapping(value = "/add"/*, method = RequestMethod.POST*/)
-    //do not specify a particular REST request(POST) to use it in browser address bar
-    public Task addTask(@RequestBody String title) {
-        Task task = new Task(title);
-        Application.toDoMap.put(task.getId(), task);
-        return task;
+    @PostMapping("/")
+    public Task addTask(@Valid @RequestBody Task task) {
+        return taskRepository.save(task);
     }
 
     @RequestMapping(value = "/delete/{id}"/*, method = RequestMethod.DELETE*/)
