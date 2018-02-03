@@ -49,7 +49,6 @@ public class TaskService {
         if (Application.toDoMap.containsKey(id)) {
             Task task = Application.toDoMap.get(id);
             task.setDone(!task.isDone());
-            task.setDone(false);
             return task;
         } else {
             throw new Exception("Task " + id + " does not exists");
