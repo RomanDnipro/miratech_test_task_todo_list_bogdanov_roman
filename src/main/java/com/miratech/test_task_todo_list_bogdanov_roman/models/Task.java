@@ -1,12 +1,24 @@
 package com.miratech.test_task_todo_list_bogdanov_roman.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.time.LocalDate;
+import org.springframework.data.annotation.Id;
+import javax.validation.constraints.Size;
 
+@Document(collection="tasks")
 public class Task {
 
+    @Id
     private long id;
+
+    @NotBlank
+    @Size(max=100)
+    @Indexed(unique=true)
     private String title;
+
     private boolean isDone = false;
     private LocalDate dueDate;
 
@@ -55,5 +67,15 @@ public class Task {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isDone=" + isDone +
+                ", dueDate=" + dueDate +
+                '}';
     }
 }
