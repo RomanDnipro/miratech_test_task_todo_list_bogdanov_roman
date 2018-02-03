@@ -5,6 +5,8 @@ import com.miratech.test_task_todo_list_bogdanov_roman.models.Task;
 import com.miratech.test_task_todo_list_bogdanov_roman.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,14 +32,20 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteTask(@PathVariable long id) {
-        taskRepository.delete(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Task> getTaskById(@PathVariable("id") Long id) {
+        Task task = taskRepository.findOne(id);
+        if (task == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(task, HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/done/{id}"/*, method = RequestMethod.PUT*/)
     //do not specify a particular REST request(PUT) to use it in browser address bar
     public Task setDone(@PathVariable long id) throws Exception {
+
         return changeDone(id, true);
     }
 
@@ -57,6 +65,11 @@ public class TaskService {
         } else {
             throw new Exception("Task " + id + " does not exists");
         }
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable long id) {
+        taskRepository.delete(id);
     }
 
     private Task changeDone(long id, boolean isDone) throws Exception {
