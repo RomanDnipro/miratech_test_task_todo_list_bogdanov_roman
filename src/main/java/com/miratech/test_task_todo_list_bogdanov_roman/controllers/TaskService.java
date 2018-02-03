@@ -30,14 +30,9 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    @RequestMapping(value = "/delete/{id}"/*, method = RequestMethod.DELETE*/)
-    //do not specify a particular REST request(DELETE) to use it in browser address bar
-    public Task deleteTask(@PathVariable long id) throws Exception {
-        if (Application.toDoMap.containsKey(id)) {
-            return Application.toDoMap.remove(id);
-        } else {
-            throw new Exception("Task " + id + " does not exists");
-        }
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable long id) {
+        taskRepository.delete(id);
     }
 
     @RequestMapping(value = "/done/{id}"/*, method = RequestMethod.PUT*/)
