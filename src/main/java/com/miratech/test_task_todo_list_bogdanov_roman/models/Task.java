@@ -19,7 +19,7 @@ public class Task {
     @Indexed(unique=true)
     private String title;
 
-    private boolean isDone = false;
+    private boolean done = false;
     private LocalDate dueDate;
 
     public Task(String title, LocalDate dueDate) {
@@ -53,12 +53,12 @@ public class Task {
         this.title = title;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean getDone() {
+        return done;
     }
 
     public void setDone(boolean done) {
-        this.isDone = done;
+        this.done = done;
     }
 
     public LocalDate getDueDate() {
@@ -74,7 +74,7 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", isDone=" + isDone +
+                ", done=" + done +
                 ", dueDate=" + dueDate +
                 '}';
     }

@@ -47,7 +47,7 @@ public class TaskService {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         taskData.setTitle(task.getTitle());
-        taskData.setDone(task.isDone());
+        taskData.setDone(task.getDone());
         Task updatedTask = taskRepository.save(taskData);
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }
