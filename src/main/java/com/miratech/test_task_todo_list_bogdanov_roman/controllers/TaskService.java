@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,6 +42,18 @@ public class TaskService {
         return new ResponseEntity<>(task, HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTas(@PathVariable("id") Long id,
+                                          @Valid @RequestBody Task task) {
+        Task taskData = taskRepository.findOne(id);
+        if (taskData == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        taskData.setTitle(task.getTitle());
+        taskData.setDone(task.isDone());
+        Task updatedTask = taskRepository.save(taskData);
+        return new ResponseEntity<>(updatedTask, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/done/{id}"/*, method = RequestMethod.PUT*/)
     //do not specify a particular REST request(PUT) to use it in browser address bar
