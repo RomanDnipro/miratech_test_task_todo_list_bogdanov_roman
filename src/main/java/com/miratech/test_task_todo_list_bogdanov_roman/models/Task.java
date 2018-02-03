@@ -1,4 +1,4 @@
-package com.miratech.test_task_todo_list_bogdanov_roman;
+package com.miratech.test_task_todo_list_bogdanov_roman.models;
 
 import java.util.Date;
 import java.time.LocalDate;

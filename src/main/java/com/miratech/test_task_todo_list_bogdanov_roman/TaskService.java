@@ -1,5 +1,6 @@
 package com.miratech.test_task_todo_list_bogdanov_roman;
 
+import com.miratech.test_task_todo_list_bogdanov_roman.models.Task;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
