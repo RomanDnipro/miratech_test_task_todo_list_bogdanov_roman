@@ -29,7 +29,7 @@ export class TaskService {
       .catch(this.handleError);
   }
 
-  deleteTask(id: long): Promise<any> {
+  deleteTask(id: string): Promise<any> {
     return this.http.delete(this.baseUrl + '/api/' + id)
       .toPromise()
       .catch(this.handleError);

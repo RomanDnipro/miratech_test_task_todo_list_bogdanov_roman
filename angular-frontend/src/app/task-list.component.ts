@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TaskService } from './task.service';
 import { Task } from './task';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'task-list',
@@ -35,7 +36,7 @@ export class TaskListComponent implements OnInit {
       });
   }
 
-  deleteTask(id: long): void {
+  deleteTask(id: string): void {
 	this.taskService.deleteTask(id)
     .then(() => {
       this.tasks = this.tasks.filter(task => task.id != id);
